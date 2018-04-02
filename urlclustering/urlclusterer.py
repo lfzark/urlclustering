@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 import re
 from collections import defaultdict
-from urlclustering.urltree import URLTreeNode
-from urlclustering.parsedurl import ParsedURL
+from ..urlclustering.urltree import URLTreeNode
+from ..urlclustering.parsedurl import ParsedURL
 
 """
 This package facilitates the clustering of similar URLs.
@@ -114,6 +114,7 @@ def _cluster_same_domain_urls(parsed_urls, min_cluster_size):
 
 
 def cluster_urls(urls, min_cluster_size=10):
+
     if min_cluster_size < 2:
         min_cluster_size = 2
     res = {'clusters': {}, 'unclustered': []}

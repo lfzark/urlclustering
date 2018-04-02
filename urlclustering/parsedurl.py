@@ -1,3 +1,5 @@
+#coding=utf8
+
 from __future__ import unicode_literals
 import re
 
@@ -18,13 +20,23 @@ class ParsedURL():
     _domain = None
 
     def __init__(self, url):
+        
         self.url = url
         self._parts = []
         # path parts
-        path_re = re.search(r'https?://[^/?#]+/([^?#]+)', url)
+
+        try:
+            path_re = re.search(r'https?://[^/?#]+/([^?#]+)', url.decode('utf8'))
+        except Exception as e:
+            try:
+                path_re = re.search(r'https?://[^/?#]+/([^?#]+)', url.decode('gbk'))
+            except Exception as e:    
+                path_re = NotImplemented
+
         if path_re:
             elems = path_re.group(1).strip('/').split('/')
             self._parts = list(zip(['/'] * len(elems), elems))
+
         path_parts = len(self._parts)
         # QS parts
         qs_re = re.search(r'https?://[^?#]+\?([^#]+)', url)

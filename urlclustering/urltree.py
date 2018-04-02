@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 import re
 
-
 class URLTreeNode(dict):
     """
     Tree structure based on dictionary. Leaf nodes define a regular
